@@ -69,3 +69,13 @@ end
 def add_pet_to_customer(customer_in_array, pet_to_add)
     customer_in_array[:pets] << pet_to_add
 end
+
+def customer_can_afford_pet(customer_in_array, pet_to_buy)
+    customers_cash= customer_cash(customer_in_array)
+    price_of_pet=pet_to_buy[:price]
+    if customers_cash >= price_of_pet
+      return true
+    else
+      return false
+    end
+end
