@@ -48,7 +48,6 @@ def remove_pet_by_name (pet_shop, pet_name)
        pet_shop[:pets].delete(pet)
      end
   end
-  return nil
 end
 
 def add_pet_to_stock (pet_shop, pet_to_add)
@@ -57,4 +56,8 @@ end
 
 def customer_cash (customer_in_array)
   customer_in_array[:cash]
+end
+
+def remove_customer_cash(customer_in_array, amount_to_remove)
+  customer_in_array[:cash] -= amount_to_remove
 end
