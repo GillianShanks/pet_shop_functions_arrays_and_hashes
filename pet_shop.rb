@@ -86,12 +86,13 @@ def sell_pet_to_customer(pet_shop, pet_hash, customer_in_array)
 
   cost_of_pet = pet_hash[:price] #price of pet
 
-  pet_shop[:admin][:pets_sold] += 1 #add to petshop's sold
+
+  increase_pets_sold(pet_shop, 1) #add to petshop's sold
 
   remove_pet_by_name(pet_shop, pet_name) #remove pet from petshop
-  customer_in_array[:pets] << pet_hash #add pet to customer's pets
+  add_pet_to_customer(customer_in_array, pet_hash)#add pet to customer's pets
   remove_customer_cash(customer_in_array, cost_of_pet) #remove cost of pet from customer
-  pet_shop[:admin][:total_cash] += cost_of_pet
+  add_or_remove_cash(pet_shop, cost_of_pet)
   #add cost of pet to petshop
 
 end
