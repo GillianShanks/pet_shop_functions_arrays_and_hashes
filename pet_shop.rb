@@ -79,3 +79,19 @@ def customer_can_afford_pet(customer_in_array, pet_to_buy)
       return false
     end
 end
+
+def sell_pet_to_customer(pet_shop, pet_hash, customer_in_array)
+  # binding.pry
+  pet_name = pet_hash[:name] #pet's name string
+
+  cost_of_pet = pet_hash[:price] #price of pet
+
+  pet_shop[:admin][:pets_sold] += 1 #add to petshop's sold
+
+  remove_pet_by_name(pet_shop, pet_name) #remove pet from petshop
+  customer_in_array[:pets] << pet_hash #add pet to customer's pets
+  remove_customer_cash(customer_in_array, cost_of_pet) #remove cost of pet from customer
+  pet_shop[:admin][:total_cash] += cost_of_pet
+  #add cost of pet to petshop
+
+end
