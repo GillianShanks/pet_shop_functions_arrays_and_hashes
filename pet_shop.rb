@@ -62,6 +62,10 @@ def remove_customer_cash(customer_in_array, amount_to_remove)
   customer_in_array[:cash] -= amount_to_remove
 end
 
-def customer_pet_count (customer_in_array)
+def customer_pet_count(customer_in_array)
   return customer_in_array[:pets].count()
+end
+
+def add_pet_to_customer(customer_in_array, pet_to_add)
+    customer_in_array[:pets] << pet_to_add
 end
