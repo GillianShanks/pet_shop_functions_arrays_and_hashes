@@ -84,13 +84,16 @@ def sell_pet_to_customer(pet_shop, pet_hash, customer_in_array)
   # binding.pry
   if pet_hash == nil
     return
-  else
-    # find_pet_by_name(pet_shop, pet_hash[:name]) == pet_hash
+  elsif customer_cash(customer_in_array) < pet_hash[:price]
+    return
+  elsif find_pet_by_name(pet_shop, pet_hash[:name]) == pet_hash
     increase_pets_sold(pet_shop, 1) #add to petshop's sold
     remove_pet_by_name(pet_shop, pet_hash[:name]) #remove pet from petshop
     add_pet_to_customer(customer_in_array, pet_hash)#add pet to customer's pets
     remove_customer_cash(customer_in_array, pet_hash[:price]) #remove cost of pet from customer
     add_or_remove_cash(pet_shop, pet_hash[:price]) #add cost of pet to petshop
+  else
+    return
   end
 
 end
