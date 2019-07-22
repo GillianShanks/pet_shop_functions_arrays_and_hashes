@@ -220,7 +220,7 @@ class TestPetShop < Minitest::Test
   def test_sell_pet_to_customer__insufficient_funds
     customer = @customers[1]
     pet = find_pet_by_name(@pet_shop,"Arthur")
-
+    #pet == nil if no pet
     sell_pet_to_customer(@pet_shop, pet, customer)
 
     assert_equal(0, customer_pet_count(customer))

@@ -36,18 +36,30 @@ def pets_by_breed(pet_shop, breed)
 end
 
 def find_pet_by_name (pet_shop, pet_name)
+  # for pet in pet_shop[:pets]
+  #   return pet if pet[:name] == pet_name
+  # end
+  # return nil
+
+  # solution:
+  match = nil
   for pet in pet_shop[:pets]
-    return pet if pet[:name] == pet_name
+    match = pet if(pet[:name] == pet_name)
   end
-  return nil
+  return match
 end
 
+
 def remove_pet_by_name (pet_shop, pet_name)
-  for pet in pet_shop[:pets]
-     if pet[:name] == pet_name
-       pet_shop[:pets].delete(pet)
-     end
-  end
+  # for pet in pet_shop[:pets]
+  #    if pet[:name] == pet_name
+  #      pet_shop[:pets].delete(pet)
+  #    end
+  # end
+
+  # solution
+  pet_to_delete = find_pet_by_name(pet_shop, pet_name)
+  pet_shop[:pets].delete(pet_to_delete)
 end
 
 def add_pet_to_stock (pet_shop, pet_to_add)
@@ -73,27 +85,27 @@ end
 def customer_can_afford_pet(customer_in_array, pet_to_buy)
     customers_cash= customer_cash(customer_in_array)
     price_of_pet=pet_to_buy[:price]
-    if customers_cash >= price_of_pet
-      return true
-    else
-      return false
-    end
+    customers_cash >= price_of_pet #returns true or false
+    #   return true
+    # else
+    #   return false
+    # end
 end
 
 def sell_pet_to_customer(pet_shop, pet_hash, customer_in_array)
   # binding.pry
-  if pet_hash == nil
-    return
-  elsif customer_cash(customer_in_array) < pet_hash[:price]
-    return
-  elsif find_pet_by_name(pet_shop, pet_hash[:name]) == pet_hash
-    increase_pets_sold(pet_shop, 1) #add to petshop's sold
-    remove_pet_by_name(pet_shop, pet_hash[:name]) #remove pet from petshop
-    add_pet_to_customer(customer_in_array, pet_hash)#add pet to customer's pets
-    remove_customer_cash(customer_in_array, pet_hash[:price]) #remove cost of pet from customer
-    add_or_remove_cash(pet_shop, pet_hash[:price]) #add cost of pet to petshop
-  else
-    return
-  end
+  return if (pet_hash == nil)
+  return if !(customer_can_afford_pet(customer_in_array, pet_hash))
+  # customer_cash(customer_in_array) < pet_hash[:price]
+  # if pet_hash != nil
+  # find_pet_by_name(pet_shop, pet_hash[:name]) == pet_hash
+  increase_pets_sold(pet_shop, 1) #add to petshop's sold
+  remove_pet_by_name(pet_shop, pet_hash[:name]) #remove pet from petshop
+  add_pet_to_customer(customer_in_array, pet_hash)#add pet to customer's pets
+  remove_customer_cash(customer_in_array, pet_hash[:price]) #remove cost of pet from customer
+  add_or_remove_cash(pet_shop, pet_hash[:price]) #add cost of pet to petshop
+  # else
+  #   return
+  # end
 
 end
